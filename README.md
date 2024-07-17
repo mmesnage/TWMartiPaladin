@@ -8,7 +8,8 @@ Available functions :
 
 - **TWMMissingTankBlessing** :
 Only in raid, if you are the paladin assigned to Salvation, and too few Paladins are in, tanks may miss Kings, Might or Light (because they remove your Salvation buff).
-Spam it before a fight to give tanks missing 5min blessings.
+This will bless tanks that cancelled their savlvation (will prioritise Kings then Might then Light).
+Spam it when raid is fully blessed (and in range preferably) to give tanks missing 5min blessings.
 
 
 /!\ Addon Dependencies : SuperMacro (https://github.com/Monteo/SuperMacro), PallyPower (https://github.com/madScripting/PallyPower-TurtleWoW)
