@@ -66,12 +66,22 @@ local function BuffTarget(raidUnit, buff)
 	TargetUnit("playertarget")
 end
 
+local function IsFriendAlive(unitId)
+	return 
+	UnitIsVisible(unitId)
+	and UnitIsConnected(unitId) 
+	and not UnitIsDead(unitId)
+	and UnitHealth(unitId) > 1 
+	and UnitIsFriend("player", unitId)
+end
+
 function TWMMissingTankBlessing()
 	if not UnitInRaid("player") or UnitClass("player") ~= "Paladin" then return end
 	for i = 1, GetNumRaidMembers() do
 		local raidUnit = "raid" .. i
 		if GetBlessing(UnitClass(raidUnit)) == "Blessing of Salvation"
 		and not buffed("Greater Blessing of Salvation", raidUnit) 
+		and IsFriendAlive(raidUnit)
 		then
 			if (buffed("Greater Blessing of Kings", raidUnit) or buffed("Blessing of Kings", raidUnit))
 			and (buffed("Greater Blessing of Might", raidUnit) or buffed("Blessing of Might", raidUnit))
