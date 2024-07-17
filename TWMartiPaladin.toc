@@ -3,5 +3,5 @@
 ## Notes: TWMartiPaladin
 ## Author: Martikos
 ## Version 1.0.0.0
-## Dependencies: SuperMacro, PallyPower
+## Dependencies: PallyPower
 TWMartiPaladin.lua

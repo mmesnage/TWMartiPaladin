@@ -12,4 +12,4 @@ This will bless tanks that cancelled their savlvation (will prioritise Kings the
 Spam it when raid is fully blessed (and in range preferably) to give tanks missing 5min blessings.
 
 
-/!\ Addon Dependencies : SuperMacro (https://github.com/Monteo/SuperMacro), PallyPower (https://github.com/madScripting/PallyPower-TurtleWoW)
+/!\ Addon Dependencies : PallyPower (https://github.com/madScripting/PallyPower-TurtleWoW)
