@@ -59,6 +59,12 @@ local function GetBlessing(class)
 	return blessing
 end
 
+local function BuffTarget(raidUnit, buff)
+	TargetUnit(raidUnit)
+	CastSpellByName(buff)
+	TargetUnit("playertarget")
+end
+
 function Pal_MissingTankBlessing()
 	if not UnitInRaid("player") or UnitClass("player") ~= "Paladin" then return end
 	for i = 1, GetNumRaidMembers() do
@@ -70,15 +76,14 @@ function Pal_MissingTankBlessing()
 			and (buffed("Greater Blessing of Might", raidUnit) or buffed("Blessing of Might", raidUnit))
 			and	not buffed("Greater Blessing of Light", raidUnit) 
 			and not buffed("Blessing of Light", raidUnit) then	
-				TargetUnit(raidUnit)
-				CastSpellByName("Blessing of Light")
-				TargetUnit("playertarget")
-			elseif b(buffed("Greater Blessing of Kings", raidUnit) or buffed("Blessing of Kings", raidUnit))
+				BuffTarget(raidUnit, "Blessing of Light")
+			elseif (buffed("Greater Blessing of Kings", raidUnit) or buffed("Blessing of Kings", raidUnit))
 			and not buffed("Greater Blessing of Might", raidUnit) 
 			and not buffed("Blessing of Might", raidUnit) then	
-				TargetUnit(raidUnit)
-				CastSpellByName("Blessing of Might")
-				TargetUnit("playertarget")
+				BuffTarget(raidUnit, "Blessing of Might")
+			elseif not buffed("Greater Blessing of Kings", raidUnit) 
+			and not buffed("Blessing of Kings", raidUnit) then	
+				BuffTarget(raidUnit, "Blessing of Kings")
 			end
 		end
 	end
