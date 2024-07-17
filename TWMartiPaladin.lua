@@ -90,6 +90,6 @@ local function TWMMissingTankBlessing()
 	end
 end
 
-SLASH_TWM1 = "/twm1" 
+SLASH_TWM1 = "/twmmtb" 
 
 SlashCmdList["TWM"] = TWMMissingTankBlessing
