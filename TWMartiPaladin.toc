@@ -1,0 +1,5 @@
+﻿## Interface: 11200
+## Title: TWMartiPaladin
+## Notes: TWMartiPaladin
+## Author: Martikos
+## Dependencies: SuperMacro, PallyPower
