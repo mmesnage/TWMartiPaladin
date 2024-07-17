@@ -1,7 +1,7 @@
 # TWMartiPaladin
 
 How it works : 
-1) Create a macro : /script <one of the available functions>()
+1) Create a macro : /script one_of_the_available_functions()
 2) GG
 
 Available functions :
