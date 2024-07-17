@@ -65,7 +65,7 @@ local function BuffTarget(raidUnit, buff)
 	TargetUnit("playertarget")
 end
 
-function Pal_MissingTankBlessing()
+function TWMarti_MissingTankBlessing()
 	if not UnitInRaid("player") or playerName ~= "Paladin" then return end
 	for i = 1, GetNumRaidMembers() do
 		local raidUnit = "raid" .. i
