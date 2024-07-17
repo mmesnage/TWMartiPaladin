@@ -65,7 +65,7 @@ local function BuffTarget(raidUnit, buff)
 	TargetUnit("playertarget")
 end
 
-function TWMarti_MissingTankBlessing()
+function TM_MissingTankBlessing()
 	if not UnitInRaid("player") or UnitClass("player") ~= "Paladin" then return end
 	for i = 1, GetNumRaidMembers() do
 		local raidUnit = "raid" .. i
@@ -87,4 +87,32 @@ function TWMarti_MissingTankBlessing()
 			end
 		end
 	end
+end
+
+function TestFctTWM2()
+	if not UnitInRaid("player") or UnitClass("player") ~= "Paladin" then return end
+	for i = 1, GetNumRaidMembers() do
+		local raidUnit = "raid" .. i
+		if GetBlessing(UnitClass(raidUnit)) == "Blessing of Salvation"
+		and not buffed("Greater Blessing of Salvation", raidUnit) 
+		then
+			if (buffed("Greater Blessing of Kings", raidUnit) or buffed("Blessing of Kings", raidUnit))
+			and (buffed("Greater Blessing of Might", raidUnit) or buffed("Blessing of Might", raidUnit))
+			and	not buffed("Greater Blessing of Light", raidUnit) 
+			and not buffed("Blessing of Light", raidUnit) then	
+				BuffTarget(raidUnit, "Blessing of Light")
+			elseif (buffed("Greater Blessing of Kings", raidUnit) or buffed("Blessing of Kings", raidUnit))
+			and not buffed("Greater Blessing of Might", raidUnit) 
+			and not buffed("Blessing of Might", raidUnit) then	
+				BuffTarget(raidUnit, "Blessing of Might")
+			elseif not buffed("Greater Blessing of Kings", raidUnit) 
+			and not buffed("Blessing of Kings", raidUnit) then	
+				BuffTarget(raidUnit, "Blessing of Kings")
+			end
+		end
+	end
+end
+
+function TestFctTWM()
+	print("test twm")
 end
