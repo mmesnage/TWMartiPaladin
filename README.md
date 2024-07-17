@@ -11,4 +11,4 @@ Only in raid, if you are the paladin assigned to Salvation, and too few Paladins
 Spam it before a fight to give tanks missing 5min blessings.
 
 
-/!\ Addon Dependencies : SuperMacro, PallyPower
+/!\ Addon Dependencies : SuperMacro (https://github.com/Monteo/SuperMacro), PallyPower (https://github.com/madScripting/PallyPower-TurtleWoW)
