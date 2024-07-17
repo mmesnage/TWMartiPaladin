@@ -66,8 +66,7 @@ local function BuffTarget(raidUnit, buff)
 	TargetUnit("playertarget")
 end
 
--- /twm1
-local function TWMMissingTankBlessing()
+function TWMMissingTankBlessing()
 	if not UnitInRaid("player") or UnitClass("player") ~= "Paladin" then return end
 	for i = 1, GetNumRaidMembers() do
 		local raidUnit = "raid" .. i
@@ -91,6 +90,3 @@ local function TWMMissingTankBlessing()
 	end
 end
 
-SLASH_TWM1 = "/twmmtb" 
-
-SlashCmdList["TWM"] = TWMMissingTankBlessing
