@@ -6,6 +6,7 @@ blessings[2] = "Blessing of Salvation";
 blessings[3] = "Blessing of Light";
 blessings[4] = "Blessing of Kings";
 blessings[5] = "Blessing of Sanctuary";
+buffed = FindBuff;
 
 local function GetBlessing(class)
 	local blessing = nil
