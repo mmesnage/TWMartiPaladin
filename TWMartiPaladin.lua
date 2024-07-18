@@ -99,28 +99,32 @@ function TWMMissingTankBlessing()
 		and not buffed("Greater Blessing of Salvation", raidUnit) 
 		and IsFriendAlive(raidUnit)
 		then
-			local buffedKings = buffed("Greater Blessing of Kings", raidUnit)
-			local buffedMight = buffed("Greater Blessing of Might", raidUnit)
-			local buffedLight = buffed("Greater Blessing of Light", raidUnit)
-			local buffedSanct = buffed("Greater Blessing of Sanctuary", raidUnit)
+			local buffedGKings = buffed("Greater Blessing of Kings", raidUnit)
+			local buffedGMight = buffed("Greater Blessing of Might", raidUnit)
+			local buffedGLight = buffed("Greater Blessing of Light", raidUnit)
+			local buffedGSanct = buffed("Greater Blessing of Sanctuary", raidUnit)
+			local buffedSKings = buffed("Blessing of Kings", raidUnit)
+			local buffedSMight = buffed("Blessing of Might", raidUnit)
+			local buffedSLight = buffed("Blessing of Light", raidUnit)
+			local buffedSSanct = buffed("Blessing of Sanctuary", raidUnit)
 
 			if SpellExists("Blessing of Sanctuary") 
-			and buffedKings
-			and buffedMight
-			and buffedLight
-			and	not buffedSanct and not buffed("Blessing of Sanctuary", raidUnit) then	
+			and buffedGKings
+			and buffedGMight
+			and buffedGLight
+			and	not buffedGSanct and not buffedSSanct then	
 				BuffTarget(raidUnit, "Blessing of Sanctuary")
 			elseif SpellExists("Blessing of Light") 
-			and buffedKings
-			and buffedMight
-			and	not buffedLight and not buffed("Blessing of Light", raidUnit) then	
+			and buffedGKings
+			and buffedGMight
+			and	not buffedGLight and not buffedSLight then	
 				BuffTarget(raidUnit, "Blessing of Light")
 			elseif SpellExists("Blessing of Might") 
-			and buffedKings
-			and not buffedMight and not buffed("Blessing of Might", raidUnit) then	
+			and buffedGKings
+			and not buffedGMight and not buffedSMight then	
 				BuffTarget(raidUnit, "Blessing of Might")
 			elseif SpellExists("Blessing of Kings") 
-			and not buffedKings and not buffed("Blessing of Kings", raidUnit) then	
+			and not buffedGKings and not buffedSKings then	
 				BuffTarget(raidUnit, "Blessing of Kings")
 			end
 		end
