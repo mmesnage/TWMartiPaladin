@@ -11,6 +11,9 @@ Only in raid, if you are the paladin assigned to Salvation, and too few Paladins
 This will bless tanks that cancelled their savlvation (will prioritise Kings then Might then Light then Sanctuary (if spell known)).
 Spam it when raid is fully blessed (and in range preferably) to give tanks missing 5min blessings.
 
+- **TWMPalTaunt** :
+If Judgement not on cooldown, buff paladin with Seal of Justice then judge (macro must be tapped 2 times). 
+
 
 **/!\ Addon Dependencies : PallyPower (https://github.com/madScripting/PallyPower-TurtleWoW)**
 
@@ -19,6 +22,10 @@ Spam it when raid is fully blessed (and in range preferably) to give tanks missi
 #### TODO 
 * New functions
 * Slash commands
+
+### 1.1.1.0
+
+* Add TWMPalTaunt, if Judgement not on cooldown, buff paladin with Seal of Justice then Judge. 
 
 #### 1.0.1.0
 

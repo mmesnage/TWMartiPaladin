@@ -164,3 +164,12 @@ function TWMMissingTankBlessing()
 		end
 	end
 end
+
+function TWMPalTaunt()
+	if not SpellExists("Judgement") or not SpellExists("Seal of Justice") or OnCooldown("Judgement") then return end
+	if not buffed("Seal of Justice", "player") then 
+		CastSpellByName("Seal of Justice") 
+	else
+		CastSpellByName("Judgement") 
+	end
+end
