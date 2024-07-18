@@ -13,3 +13,13 @@ Spam it when raid is fully blessed (and in range preferably) to give tanks missi
 
 
 /!\ Addon Dependencies : PallyPower (https://github.com/madScripting/PallyPower-TurtleWoW)
+
+### Change Log
+
+### 1.0.1.0
+
+* Improved TWMMissingTankBlessing, small blessings to apply will be determined using PallyPower assignements instead of buffs already on target.
+
+#### 1.0.0.0
+
+* first version TWMMissingTankBlessing
