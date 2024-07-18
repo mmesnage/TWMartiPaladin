@@ -16,6 +16,10 @@ Spam it when raid is fully blessed (and in range preferably) to give tanks missi
 
 ### Change Log :
 
+#### TODO 
+* New functions
+* Slash commands
+
 #### 1.0.1.0
 
 * Improved TWMMissingTankBlessing, small blessings to apply will be determined using PallyPower assignements instead of buffs already on raid members.
