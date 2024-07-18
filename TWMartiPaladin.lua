@@ -104,38 +104,6 @@ function TWMMissingTankBlessing()
 			local buffedLight = (buffed("Greater Blessing of Light", raidUnit) or buffed("Blessing of Light", raidUnit))
 			local buffedSanct = (buffed("Greater Blessing of Sanctuary", raidUnit) or buffed("Blessing of Sanctuary", raidUnit))
 
-			if buffedKings
-			and buffedMight
-			and buffedLight
-			and	not buffedSanct then	
-				BuffTarget(raidUnit, "Blessing of Sanctuary")
-			elseif buffedKings
-			and buffedMight
-			and	not buffedLight then	
-				BuffTarget(raidUnit, "Blessing of Light")
-			elseif buffedKings
-			and not buffedMight then	
-				BuffTarget(raidUnit, "Blessing of Might")
-			elseif not buffedKings then	
-				BuffTarget(raidUnit, "Blessing of Kings")
-			end
-		end
-	end
-end
-
-function TWMMissingTankBlessingV2()
-	if not UnitInRaid("player") or UnitClass("player") ~= "Paladin" then return end
-	for i = 1, GetNumRaidMembers() do
-		local raidUnit = "raid" .. i
-		if GetBlessing(UnitClass(raidUnit)) == "Blessing of Salvation"
-		and not buffed("Greater Blessing of Salvation", raidUnit) 
-		and IsFriendAlive(raidUnit)
-		then
-			local buffedKings = (buffed("Greater Blessing of Kings", raidUnit) or buffed("Blessing of Kings", raidUnit))
-			local buffedMight = (buffed("Greater Blessing of Might", raidUnit) or buffed("Blessing of Might", raidUnit))
-			local buffedLight = (buffed("Greater Blessing of Light", raidUnit) or buffed("Blessing of Light", raidUnit))
-			local buffedSanct = (buffed("Greater Blessing of Sanctuary", raidUnit) or buffed("Blessing of Sanctuary", raidUnit))
-
 			if SpellExists("Blessing of Sanctuary") 
 			and buffedKings
 			and buffedMight

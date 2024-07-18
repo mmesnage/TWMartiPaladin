@@ -7,8 +7,8 @@ How it works :
 Available functions :
 
 - **TWMMissingTankBlessing** :
-Only in raid, if you are the paladin assigned to Salvation, and too few Paladins are in, tanks may miss Kings, Might or Light (because they remove your Salvation buff).
-This will bless tanks that cancelled their savlvation (will prioritise Kings then Might then Light).
+Only in raid, if you are the paladin assigned to Salvation, and too few Paladins are in, tanks may miss Kings, Might, Light or Sanctuary (because they remove your Salvation buff).
+This will bless tanks that cancelled their savlvation (will prioritise Kings then Might then Light then Sanctuary (if spell known)).
 Spam it when raid is fully blessed (and in range preferably) to give tanks missing 5min blessings.
 
 
