@@ -6,7 +6,7 @@ blessings[2] = "Blessing of Salvation";
 blessings[3] = "Blessing of Light";
 blessings[4] = "Blessing of Kings";
 blessings[5] = "Blessing of Sanctuary";
-buffed = FindBuff;
+local buffed = FindBuff;
 
 local function IsBlessingClassIndexAssigned(blessing, classIndex)
 	for _, assignments in pairs(PallyPower_Assignments) do
@@ -123,45 +123,93 @@ local function SpellExists(findspell)
 	end
 end
 
+local function TWMBuffMissingWisdom(raidUnit)
+	local raidUnitClass = UnitClass(raidUnit)
+	if GetAssignedBlessing(raidUnitClass, playerName) == "Blessing of Might"
+	and not buffed("Greater Blessing of Might", raidUnit) 
+	and IsFriendAlive(raidUnit)
+	then
+
+		local isWisdomAssigned = IsBlessingAssigned(raidUnitClass, "Blessing of Wisdom")
+		local buffedWisdom = buffed("Greater Blessing of Wisdom", raidUnit) or buffed("Blessing of Wisdom", raidUnit)
+
+		if SpellExists("Blessing of Wisdom") 
+		and not isWisdomAssigned and not buffedWisdom and raidUnitClass ~="Warrior" and raidUnitClass ~="Rogue" then	
+			BuffTarget(raidUnit, "Blessing of Wisdom")
+		end					
+	end
+end
+
+local function TWMBuffMissingMight(raidUnit)
+	local raidUnitClass = UnitClass(raidUnit)
+	if GetAssignedBlessing(raidUnitClass, playerName) == "Blessing of Wisdom"
+	and not buffed("Greater Blessing of Wisdom", raidUnit) 
+	and IsFriendAlive(raidUnit)
+	then
+		
+		local isMightAssigned = IsBlessingAssigned(raidUnitClass, "Blessing of Might")
+		local buffedMight = buffed("Greater Blessing of Might", raidUnit) or buffed("Blessing of Might", raidUnit)
+
+		if SpellExists("Blessing of Might") 
+		and not isMightAssigned and not buffedMight then	
+			BuffTarget(raidUnit, "Blessing of Might")
+		end					
+	end
+end
+
+local function TWMBuffTankBlessing(raidUnit)
+	local raidUnitClass = UnitClass(raidUnit)
+	if GetAssignedBlessing(raidUnitClass, playerName) == "Blessing of Salvation"
+	and not buffed("Greater Blessing of Salvation", raidUnit) 
+	and IsFriendAlive(raidUnit)
+	then
+		local isKingAssigned = IsBlessingAssigned(raidUnitClass, "Blessing of Kings")
+		local isMightAssigned = IsBlessingAssigned(raidUnitClass, "Blessing of Might")
+		local isLightAssigned = IsBlessingAssigned(raidUnitClass, "Blessing of Light")
+		local isSanctuaryAssigned = IsBlessingAssigned(raidUnitClass, "Blessing of Sanctuary")
+
+		local buffedKings = buffed("Greater Blessing of Kings", raidUnit) or buffed("Blessing of Kings", raidUnit)
+		local buffedMight = buffed("Greater Blessing of Might", raidUnit) or buffed("Blessing of Might", raidUnit)
+		local buffedLight = buffed("Greater Blessing of Light", raidUnit) or buffed("Blessing of Light", raidUnit)
+		local buffedSanct = buffed("Greater Blessing of Sanctuary", raidUnit) or buffed("Blessing of Sanctuary", raidUnit)
+
+		if SpellExists("Blessing of Sanctuary") 
+		and isKingAssigned
+		and isMightAssigned
+		and isLightAssigned
+		and not isSanctuaryAssigned	and	not buffedSanct then	
+			BuffTarget(raidUnit, "Blessing of Sanctuary")
+		elseif SpellExists("Blessing of Light") 
+		and isKingAssigned
+		and isMightAssigned
+		and not isLightAssigned	and	not buffedLight then	
+			BuffTarget(raidUnit, "Blessing of Light")
+		elseif SpellExists("Blessing of Might") 
+		and isKingAssigned
+		and not isMightAssigned	and not buffedMight then	
+			BuffTarget(raidUnit, "Blessing of Might")
+		elseif SpellExists("Blessing of Kings") 
+		and not isKingAssigned	and not buffedKings then	
+			BuffTarget(raidUnit, "Blessing of Kings")
+		end
+	end
+end
+
 function TWMMissingTankBlessing()
 	if not UnitInRaid("player") or UnitClass("player") ~= "Paladin" then return end
 	for i = 1, GetNumRaidMembers() do
 		local raidUnit = "raid" .. i
-		local raidUnitClass = UnitClass(raidUnit)
-		if GetAssignedBlessing(raidUnitClass, playerName) == "Blessing of Salvation"
-		and not buffed("Greater Blessing of Salvation", raidUnit) 
-		and IsFriendAlive(raidUnit)
-		then
-			local isKingAssigned = IsBlessingAssigned(raidUnitClass, "Blessing of Kings")
-			local isMightAssigned = IsBlessingAssigned(raidUnitClass, "Blessing of Might")
-			local isLightAssigned = IsBlessingAssigned(raidUnitClass, "Blessing of Light")
-			local isSanctuaryAssigned = IsBlessingAssigned(raidUnitClass, "Blessing of Sanctuary")
+		TWMBuffTankBlessing(raidUnit)
+	end
+end
 
-			local buffedKings = buffed("Greater Blessing of Kings", raidUnit) or buffed("Blessing of Kings", raidUnit)
-			local buffedMight = buffed("Greater Blessing of Might", raidUnit) or buffed("Blessing of Might", raidUnit)
-			local buffedLight = buffed("Greater Blessing of Light", raidUnit) or buffed("Blessing of Light", raidUnit)
-			local buffedSanct = buffed("Greater Blessing of Sanctuary", raidUnit) or buffed("Blessing of Sanctuary", raidUnit)
-
-			if SpellExists("Blessing of Sanctuary") 
-			and isKingAssigned
-			and isMightAssigned
-			and isLightAssigned
-			and not isSanctuaryAssigned	and	not buffedSanct then	
-				BuffTarget(raidUnit, "Blessing of Sanctuary")
-			elseif SpellExists("Blessing of Light") 
-			and isKingAssigned
-			and isMightAssigned
-			and not isLightAssigned	and	not buffedLight then	
-				BuffTarget(raidUnit, "Blessing of Light")
-			elseif SpellExists("Blessing of Might") 
-			and isKingAssigned
-			and not isMightAssigned	and not buffedMight then	
-				BuffTarget(raidUnit, "Blessing of Might")
-			elseif SpellExists("Blessing of Kings") 
-			and not isKingAssigned	and not buffedKings then	
-				BuffTarget(raidUnit, "Blessing of Kings")
-			end
-		end
+function TWMMissingSmallBlessing()
+	if not UnitInRaid("player") or UnitClass("player") ~= "Paladin" then return end
+	for i = 1, GetNumRaidMembers() do
+		local raidUnit = "raid" .. i
+		TWMBuffMissingWisdom(raidUnit)
+		TWMBuffMissingMight(raidUnit)
+		TWMBuffTankBlessing(raidUnit)
 	end
 end
 
@@ -173,3 +221,5 @@ function TWMPalTaunt()
 		CastSpellByName("Judgement") 
 	end
 end
+
+
