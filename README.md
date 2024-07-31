@@ -6,6 +6,11 @@
 
 #### Available functions :
 
+- **TWMBoP** :
+Only in raid, this one in particular and need to be activated, to activate run the command : **/script TWMAutoBoP(1)** (or create an additional macro for it) (0 instead of 1 to deactivate, and will be deactivated on reload ui / relogging)    
+Once activated if someone whisper you exactly "BOP ME!", it will set the one that whispered you as the next target for the TWMBoP function, if you tap your TWMBoP macro it will attend to BoP the whisperer and then reset the target of the TWMBoP function.
+Ask the ones that want to use that functionality to create a macro : **/script SendChatMessage("BOP ME!", "WHISPER", nil, "YourPaladinName")**.
+
 - **TWMMissingSmallBlessing** :
 Only in raid, if you are the paladin assigned to Might or Wisdom, and too few Paladins are in, some hybrid class may miss Might or Wisdom. For example, you have 3 feral druids and a Moonkin in raid, but only 3 paladins in raid, one paladin is assigned to Salvation and another to Kings, you are assigned to Might/Wisdom (Might on Druid because more ferals) => The moonkin will want Wisdom instead of Might!
 This will bless raid members that cancelled their blessing of Might or Wisdom with the opposite one.
@@ -28,6 +33,10 @@ If Judgement not on cooldown, buff paladin with Seal of Justice then judge (macr
 #### TODO 
 * New functions
 * Slash commands
+
+#### 1.3.2.0
+
+* Add TWMBoP
 
 #### 1.2.2.0
 

@@ -1,4 +1,4 @@
-local playerName = UnitName("player")
+local pName = UnitName("player")
 local blessings = {};
 blessings[0] = "Blessing of Wisdom";
 blessings[1] = "Blessing of Might";
@@ -7,6 +7,27 @@ blessings[3] = "Blessing of Light";
 blessings[4] = "Blessing of Kings";
 blessings[5] = "Blessing of Sanctuary";
 local buffed = FindBuff;
+local autoBoP = false
+local bopTarget = nil
+
+TWMPALFRAME = CreateFrame("Button","TWMPALFRAME",UIParent)
+
+TWMPALFRAME:RegisterEvent("CHAT_MSG_WHISPER")
+
+function TWMPALFRAME:OnEvent()
+	if event == "CHAT_MSG_WHISPER" then
+		if (autoBoP and UnitInRaid("player") and UnitClass("player") ~= "Paladin" and arg1 == "BOP ME!") then
+			print(arg2.." wants a BoP!")
+			if (not OnCooldown("Blessing of Protection")) then
+				bopTarget = arg2
+			else
+				SendChatMessage("BoP on CD, RIP!", "WHISPER", nil, arg2)
+			end
+		end
+	end
+end
+
+TWMPALFRAME:SetScript("OnEvent", TWMPALFRAME.OnEvent)
 
 local function IsBlessingClassIndexAssigned(blessing, classIndex)
 	for _, assignments in pairs(PallyPower_Assignments) do
@@ -125,7 +146,7 @@ end
 
 local function TWMBuffMissingWisdom(raidUnit)
 	local raidUnitClass = UnitClass(raidUnit)
-	if GetAssignedBlessing(raidUnitClass, playerName) == "Blessing of Might"
+	if GetAssignedBlessing(raidUnitClass, pName) == "Blessing of Might"
 	and not buffed("Greater Blessing of Might", raidUnit) 
 	and IsFriendAlive(raidUnit)
 	then
@@ -142,7 +163,7 @@ end
 
 local function TWMBuffMissingMight(raidUnit)
 	local raidUnitClass = UnitClass(raidUnit)
-	if GetAssignedBlessing(raidUnitClass, playerName) == "Blessing of Wisdom"
+	if GetAssignedBlessing(raidUnitClass, pName) == "Blessing of Wisdom"
 	and not buffed("Greater Blessing of Wisdom", raidUnit) 
 	and IsFriendAlive(raidUnit)
 	then
@@ -159,7 +180,7 @@ end
 
 local function TWMBuffTankBlessing(raidUnit)
 	local raidUnitClass = UnitClass(raidUnit)
-	if GetAssignedBlessing(raidUnitClass, playerName) == "Blessing of Salvation"
+	if GetAssignedBlessing(raidUnitClass, pName) == "Blessing of Salvation"
 	and not buffed("Greater Blessing of Salvation", raidUnit) 
 	and IsFriendAlive(raidUnit)
 	then
@@ -192,6 +213,28 @@ local function TWMBuffTankBlessing(raidUnit)
 		and not isKingAssigned	and not buffedKings then	
 			BuffTarget(raidUnit, "Blessing of Kings")
 		end
+	end
+end
+
+function TWMBoP()  
+	if not UnitInRaid("player") or UnitClass("player") ~= "Paladin" then return end
+	if bopTarget then
+		TargetByName(bopTarget)
+		if not OnCooldown("Blessing of Protection") and not buffed("Forbearance", "target") then
+			CastSpellByName("Blessing of Protection")
+		end
+		TargetUnit("playertarget")		
+		bopTarget = nil
+  	end
+end
+
+function TWMAutoBoP(bool)
+	if (bool == 1) then
+		print("TWM Auto BoP Activated!")
+		autoBoP = true
+	else
+		print("TWM Auto BoP Deactivated!")
+		autoBoP = false
 	end
 end
 
