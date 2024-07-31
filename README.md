@@ -21,13 +21,17 @@ Spam it when raid is fully blessed (and in range preferably) to give tanks missi
 If Judgement not on cooldown, buff paladin with Seal of Justice then judge (macro must be tapped 2 times). 
 
 
-**/!\ Addon Dependencies : PallyPower (https://github.com/madScripting/PallyPower-TurtleWoW)**
+**/!\ Addon Dependencies : PallyPower (https://github.com/madScripting/PallyPower-TurtleWoW), SuperMacro (https://github.com/Monteo/SuperMacro)** 
 
 ### Change Log :
 
 #### TODO 
 * New functions
 * Slash commands
+
+#### 1.2.2.0
+
+* Fix : Add SuperMacro Dependency
 
 #### 1.2.1.0
 
