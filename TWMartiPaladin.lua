@@ -16,7 +16,7 @@ TWMPALFRAME:RegisterEvent("CHAT_MSG_WHISPER")
 
 function TWMPALFRAME:OnEvent()
 	if event == "CHAT_MSG_WHISPER" then
-		if (autoBoP and UnitInRaid("player") and UnitClass("player") ~= "Paladin" and arg1 == "BOP ME!") then
+		if (autoBoP and UnitInRaid("player") and UnitClass("player") == "Paladin" and arg1 == "BOP ME!") then
 			print(arg2.." wants a BoP!")
 			if (not OnCooldown("Blessing of Protection")) then
 				bopTarget = arg2
