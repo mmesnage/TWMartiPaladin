@@ -34,19 +34,19 @@ If Judgement not on cooldown, buff paladin with Seal of Justice then judge (macr
 * New functions
 * Slash commands
 
-#### 1.3.2.0
+#### 1.3.0.0
 
 * Add TWMBoP
 
-#### 1.2.2.0
+#### 1.2.1.0
 
 * Fix : Add SuperMacro Dependency
 
-#### 1.2.1.0
+#### 1.2.0.0
 
 * Add TWMMissingSmallBlessing
 
-#### 1.1.1.0
+#### 1.1.0.0
 
 * Add TWMPalTaunt, if Judgement not on cooldown, buff paladin with Seal of Justice then Judge. 
 
